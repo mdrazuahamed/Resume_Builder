@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 @Entity
-public class User {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +23,7 @@ public class User {
     private String email;
     private String summery;
 
-    public User(String firstName, String surName, String city, String postalCode, String country, String phone, String email) {
+    public AppUser(String firstName, String surName, String city, String postalCode, String country, String phone, String email) {
         this.firstName = firstName;
         this.surName = surName;
         this.city = city;
@@ -33,7 +33,7 @@ public class User {
         this.email = email;
     }
 
-    public User() {
+    public AppUser() {
 
     }
 
