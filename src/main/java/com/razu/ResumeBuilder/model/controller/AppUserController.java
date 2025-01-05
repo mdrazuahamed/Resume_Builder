@@ -5,6 +5,8 @@ import com.razu.ResumeBuilder.model.repository.AppUserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -20,4 +22,17 @@ public class AppUserController {
         model.addAttribute("blankAppUser", new AppUser());
         return "basic-form";
     }
+    @PostMapping("/basicForm")
+    public String saveBasicInfo(@ModelAttribute("appUser") AppUser appUser, Model model) {
+        appUserRepository.save(appUser);
+        model.addAttribute("appUser",appUser);
+        return "university-details";
+    }
+    @PostMapping("/universityDetails")
+    public String saveUniversityDetails(@ModelAttribute("appUser") AppUser appUser, Model model) {
+        appUserRepository.save(appUser);
+        model.addAttribute("appUser",appUser);
+        return "university-details";
+    }
+
 }

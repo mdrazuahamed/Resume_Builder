@@ -1,9 +1,6 @@
 package com.razu.ResumeBuilder.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 @Entity
 public class AppUser {
@@ -22,6 +19,13 @@ public class AppUser {
     private String phone;
     private String email;
     private String summery;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Education hscEducation;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Education sscEducation;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Education bscEducation;
+
 
     public AppUser(String firstName, String surName, String city, String postalCode, String country, String phone, String email) {
         this.firstName = firstName;
@@ -35,6 +39,30 @@ public class AppUser {
 
     public AppUser() {
 
+    }
+
+    public Education getHscEducation() {
+        return hscEducation;
+    }
+
+    public void setHscEducation(Education hscEducation) {
+        this.hscEducation = hscEducation;
+    }
+
+    public Education getSscEducation() {
+        return sscEducation;
+    }
+
+    public void setSscEducation(Education sscEducation) {
+        this.sscEducation = sscEducation;
+    }
+
+    public Education getBscEducation() {
+        return bscEducation;
+    }
+
+    public void setBscEducation(Education bscEducation) {
+        this.bscEducation = bscEducation;
     }
 
     public String getSummery() {

@@ -85,10 +85,40 @@
     </div>
 </div>
 <div class="background-container">
-    <h1 class="main-text">Need Just One Step to Make Your Resume</h1>
-    <h3 class="sub-text">Please give all Necessary Info</h3>
-    <form th:action="@{/appUser/basicForm}" method="get" class="text-center">
-        <button class="btn">Next</button>
+    <form th:action="@{/appUser/basicForm}" method="post" th:object="${blankAppUser}">
+        <div class="mb-3">
+            <label  class="form-label">Name</label>
+            <input type="text" id="name" th:field="*{firstName}" placeholder="Enter name">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Sur name</label>
+            <input type="text"  id="surName" th:field="*{surName}" placeholder="Enter sur name">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Country</label>
+            <input type="text"  id="country" th:field="*{country}" placeholder="Give your country name">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">City</label>
+            <input type="text"  id="cityName" th:field="*{city}" placeholder="Give your City name">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">PostalCode</label>
+            <input type="text"  id="postalCode" th:field="*{postalCode}" placeholder="Give your Postal code">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Phone number</label>
+            <input type="text"  id="phone" th:field="*{phone}" placeholder="Give your Phone number">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Email</label>
+            <input type="text"  id="email" th:field="*{email}" placeholder="Give your email address">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Summery</label>
+            <input type="text"  id="summery" th:field="*{summery}" placeholder="Give your summery">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Next</button>
     </form>
 </div>
 </body>

@@ -45,36 +45,6 @@
             position: relative;
             text-align: center;
         }
-
-        .main-text {
-            position: absolute;
-            top: 25%; /* Adjust positioning as needed */
-            left: 30%; /* Adjust positioning as needed */
-            color: black;
-        }
-
-        .sub-text {
-            position: absolute;
-            top: 30%; /* Adjust to place below main text */
-            left: 40%; /* Move to the right of main text */
-            color: black;
-            font-size: 20px; /* Adjust font size if needed */
-        }
-
-        .btn {
-            width: 150px; /* Adjust width as needed */
-            height: 50px; /* Adjust height as needed */
-            font-size: 18px; /* Adjust font size */
-            background-color: green; /* Green background */
-            color: white; /* Text color */
-            border: none; /* Remove border */
-            border-radius: 5px; /* Add rounded corners */
-            cursor: pointer; /* Pointer on hover */
-        }
-
-        .btn:hover {
-            background-color: darkgreen; /* Slightly darker shade on hover */
-        }
     </style>
 </head>
 <body>
@@ -85,10 +55,26 @@
     </div>
 </div>
 <div class="background-container">
-    <h1 class="main-text">Need Just One Step to Make Your Resume</h1>
-    <h3 class="sub-text">Please give all Necessary Info</h3>
-    <form th:action="@{/appUser/basicForm}" method="get" class="text-center">
-        <button class="btn">Next</button>
+    <form th:action="@{/appUser/universityDetails}" method="post" th:object="${appUser}">
+        <div class="mb-3">
+            <label  class="form-label">Degree</label>
+            <input type="text" id="degree" th:field="*{hscEducation.degree}" placeholder="Enter Degree name">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Field of Study</label>
+            <input type="text" id="fieldOfStudy" th:field="*{hscEducation.fieldOfStudy}" placeholder="Enter Field of study name">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Institution Name</label>
+            <input type="text" id="institutionName" th:field="*{hscEducation.institutionName}" placeholder="Enter Institution Name">
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Institution Location</label>
+            <input type="text" id="institutionLocation" th:field="*{hscEducation.institutionLocation}" placeholder="Enter Institution Location">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary w-100">Next</button>
     </form>
 </div>
 </body>
