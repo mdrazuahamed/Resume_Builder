@@ -10,7 +10,7 @@ public class Education {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String institutionName;
-    private String degree; // enum
+    private String degree;
     private String institutionLocation;
     private String fieldOfStudy;
     private String gpa;

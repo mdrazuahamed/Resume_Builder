@@ -56,26 +56,45 @@
 </div>
 <div class="background-container">
     <form th:action="@{/appUser/universityDetails}" method="post" th:object="${appUser}">
-        <div class="mb-3">
-            <label  class="form-label">Degree</label>
-            <input type="text" id="degree" th:field="*{hscEducation.degree}" placeholder="Enter Degree name">
+        <div id="education-container">
+                <button type="button" class="btn btn-danger" onclick="removeEducation(this)">Remove</button>
         </div>
-        <div class="mb-3">
-            <label  class="form-label">Field of Study</label>
-            <input type="text" id="fieldOfStudy" th:field="*{hscEducation.fieldOfStudy}" placeholder="Enter Field of study name">
-        </div>
-        <div class="mb-3">
-            <label  class="form-label">Institution Name</label>
-            <input type="text" id="institutionName" th:field="*{hscEducation.institutionName}" placeholder="Enter Institution Name">
-        </div>
-        <div class="mb-3">
-            <label  class="form-label">Institution Location</label>
-            <input type="text" id="institutionLocation" th:field="*{hscEducation.institutionLocation}" placeholder="Enter Institution Location">
-        </div>
-
-
+        <button type="button" class="btn btn-secondary" onclick="addEducation()">Add</button>
         <button type="submit" class="btn btn-primary w-100">Next</button>
     </form>
+    <script>
+        let educationIndex = 0;
+        function addEducation() {
+            const container = document.getElementById("education-container");
+            const template = `
+            <div class="education-item mb-3">
+                <div class="mb-3">
+                    <label class="form-label">Degree</label>
+                    <input type="text" name="education[${educationIndex}].degree" placeholder="Enter Degree name" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Field of Study</label>
+                    <input type="text" name="education[${educationIndex}].fieldOfStudy" placeholder="Enter Field of study name" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Institution Name</label>
+                    <input type="text" name="education[${educationIndex}].institutionName" placeholder="Enter Institution Name" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Institution Location</label>
+                    <input type="text" name="education[${educationIndex}].institutionLocation" placeholder="Enter Institution Location" class="form-control">
+                </div>
+                <button type="button" class="btn btn-danger" onclick="removeEducation(this)">Remove</button>
+            </div>`;
+            container.insertAdjacentHTML('beforeend', template);
+            educationIndex++;
+        }
+
+        function removeEducation(button) {
+            const educationItem = button.closest('.education-item');
+            educationItem.remove();
+        }
+    </script>
 </div>
 </body>
 </html>
