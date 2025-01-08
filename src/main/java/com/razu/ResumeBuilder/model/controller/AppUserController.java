@@ -32,6 +32,7 @@ public class AppUserController {
         List<Education> educations = new ArrayList<>();
         appUser.setEducations(educations);
         model.addAttribute("appUser",appUser);
+        model.addAttribute("appUserId",appUser.getId());
         return "university-details";
     }
     @PostMapping("/universityDetails")
@@ -40,7 +41,7 @@ public class AppUserController {
 //        model.addAttribute("appUser",appUser);
         System.out.println("work");
         System.out.println(appUser.getEducations().size());
-        return "university-details";
+        return "success";
     }
 
 }

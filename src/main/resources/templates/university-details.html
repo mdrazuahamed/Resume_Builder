@@ -57,6 +57,7 @@
 <div class="background-container">
     <form th:action="@{/appUser/universityDetails}" method="post" th:object="${appUser}">
         <div id="education-container" >
+            <input type="hidden" th:field="${appUser.id}" />
             <!-- Template items will be added dynamically -->
         </div>
         <button type="button" class="btn btn-secondary" onclick="addEducation()">Add</button>
