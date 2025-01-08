@@ -55,9 +55,9 @@
     </div>
 </div>
 <div class="background-container">
-    <form th:action="@{/appUser/universityDetails}" method="post" th:object="${appUser}">
+    <form th:action="@{/appUser/universityDetails}" method="post" th:field="*{educations}">
         <div id="education-container">
-                <button type="button" class="btn btn-danger" onclick="removeEducation(this)">Remove</button>
+            <!-- Template items will be added dynamically -->
         </div>
         <button type="button" class="btn btn-secondary" onclick="addEducation()">Add</button>
         <button type="submit" class="btn btn-primary w-100">Next</button>
@@ -67,25 +67,29 @@
         function addEducation() {
             const container = document.getElementById("education-container");
             const template = `
-            <div class="education-item mb-3">
-                <div class="mb-3">
-                    <label class="form-label">Degree</label>
-                    <input type="text" name="education[${educationIndex}].degree" placeholder="Enter Degree name" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Field of Study</label>
-                    <input type="text" name="education[${educationIndex}].fieldOfStudy" placeholder="Enter Field of study name" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Institution Name</label>
-                    <input type="text" name="education[${educationIndex}].institutionName" placeholder="Enter Institution Name" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Institution Location</label>
-                    <input type="text" name="education[${educationIndex}].institutionLocation" placeholder="Enter Institution Location" class="form-control">
-                </div>
-                <button type="button" class="btn btn-danger" onclick="removeEducation(this)">Remove</button>
-            </div>`;
+        <div class="education-item mb-3">
+            <div class="mb-3">
+                <label class="form-label">Degree</label>
+                <input type="text" name="educations[${educationIndex}].degree" placeholder="Enter Degree name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Field of Study</label>
+                <input type="text" name="educations[${educationIndex}].fieldOfStudy" placeholder="Enter Field of study name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Institution Name</label>
+                <input type="text" name="educations[${educationIndex}].institutionName" placeholder="Enter Institution Name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Institution Location</label>
+                <input type="text" name="educations[${educationIndex}].institutionLocation" placeholder="Enter Institution Location" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">GPA</label>
+                <input type="text" name="educations[${educationIndex}].gpa" placeholder="Enter GPA" class="form-control">
+            </div>
+            <button type="button" class="btn btn-danger" onclick="removeEducation(this)">Remove</button>
+        </div>`;
             container.insertAdjacentHTML('beforeend', template);
             educationIndex++;
         }

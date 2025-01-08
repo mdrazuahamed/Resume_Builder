@@ -75,4 +75,16 @@ public class Education {
     public void setGpa(String gpa) {
         this.gpa = gpa;
     }
+
+    @Override
+    public String toString() {
+        return "Education{" +
+                "id=" + id +
+                ", institutionName='" + institutionName + '\'' +
+                ", degree='" + degree + '\'' +
+                ", institutionLocation='" + institutionLocation + '\'' +
+                ", fieldOfStudy='" + fieldOfStudy + '\'' +
+                ", gpa='" + gpa + '\'' +
+                '}';
+    }
 }

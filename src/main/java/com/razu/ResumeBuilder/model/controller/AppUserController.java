@@ -1,6 +1,7 @@
 package com.razu.ResumeBuilder.model.controller;
 
 import com.razu.ResumeBuilder.model.AppUser;
+import com.razu.ResumeBuilder.model.Education;
 import com.razu.ResumeBuilder.model.repository.AppUserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/appUser")
@@ -29,9 +32,11 @@ public class AppUserController {
         return "university-details";
     }
     @PostMapping("/universityDetails")
-    public String saveUniversityDetails(@ModelAttribute("appUser") AppUser appUser, Model model) {
-        appUserRepository.save(appUser);
-        model.addAttribute("appUser",appUser);
+    public String saveUniversityDetails(@ModelAttribute("educations") List<Education> educations, Model model) {
+//        appUserRepository.save(appUser);
+//        model.addAttribute("appUser",appUser);
+        System.out.println("work");
+        System.out.println(educations.size());
         return "university-details";
     }
 
