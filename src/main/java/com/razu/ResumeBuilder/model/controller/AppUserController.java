@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,15 +29,17 @@ public class AppUserController {
     @PostMapping("/basicForm")
     public String saveBasicInfo(@ModelAttribute("appUser") AppUser appUser, Model model) {
         appUserRepository.save(appUser);
+        List<Education> educations = new ArrayList<>();
+        appUser.setEducations(educations);
         model.addAttribute("appUser",appUser);
         return "university-details";
     }
     @PostMapping("/universityDetails")
-    public String saveUniversityDetails(@ModelAttribute("educations") List<Education> educations, Model model) {
+    public String saveUniversityDetails(@ModelAttribute("educations") AppUser appUser, Model model) {
 //        appUserRepository.save(appUser);
 //        model.addAttribute("appUser",appUser);
         System.out.println("work");
-        System.out.println(educations.size());
+        System.out.println(appUser.getEducations().size());
         return "university-details";
     }
 
