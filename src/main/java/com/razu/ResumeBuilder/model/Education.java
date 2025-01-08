@@ -23,6 +23,13 @@ public class Education {
         this.fieldOfStudy = fieldOfStudy;
         this.gpa = gpa;
     }
+    public Education( String institutionName, String degree, String institutionLocation, String fieldOfStudy, String gpa) {
+        this.institutionName = institutionName;
+        this.degree = degree;
+        this.institutionLocation = institutionLocation;
+        this.fieldOfStudy = fieldOfStudy;
+        this.gpa = gpa;
+    }
 
     public Education() {
 
