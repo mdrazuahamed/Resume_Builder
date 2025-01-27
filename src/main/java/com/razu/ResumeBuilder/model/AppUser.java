@@ -25,6 +25,22 @@ public class AppUser {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Education> educations;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private  List<Experience> experiences;
+
+    public AppUser(Long id, String firstName, String surName, String city, String postalCode, String country, String phone, String email, String summery, List<Education> educations, List<Experience> experiences) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surName = surName;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.country = country;
+        this.phone = phone;
+        this.email = email;
+        this.summery = summery;
+        this.educations = educations;
+        this.experiences = experiences;
+    }
 
     public AppUser(String firstName, String surName, String city, String postalCode, String country, String phone, String email) {
         this.firstName = firstName;
@@ -38,6 +54,14 @@ public class AppUser {
 
     public AppUser() {
 
+    }
+
+    public List<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(List<Experience> experiences) {
+        this.experiences = experiences;
     }
 
     public Long getId() {
