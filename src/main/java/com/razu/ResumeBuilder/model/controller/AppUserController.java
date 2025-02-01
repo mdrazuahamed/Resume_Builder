@@ -44,7 +44,7 @@ public class AppUserController {
     public String saveUniversityDetails(@ModelAttribute("educations") AppUser appUser, Model model) {
         Optional<AppUser> optionalAppUser = appUserRepository.findById(appUser.getId());
         if(optionalAppUser.isEmpty())
-            System.out.println("No appuser found");
+            System.out.println("No app user found");
         List<Education> educations = new ArrayList<>();
         appUser.getEducations().forEach(existEducation -> {
             Education newEducation = new Education();

@@ -2,9 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 20px 30px;
+        }
+
+        .navbar .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar img {
+            height: 70px;
+            margin-right: 10px;
+        }
+
+        .navbar h3 {
+            color: white;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .background-container {
+            background-image: url('/image/bcg2.PNG');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .btn-danger {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
+<div class="navbar">
+    <div class="logo-container">
+        <img src="/image/logo.jpg" alt="Logo">
+        <h3>Resume Builder</h3>
+    </div>
+</div>
+<div class="background-container">
+    <div class="form-container">
+        <h2 class="text-center mb-4">Job Experiences</h2>
+        <form th:action="@{/experience/experienceDetails}" method="post" th:object="${appUserForAddExperience}">
+            <div id="experience-container">
+                <input type="hidden" th:field="${appUserForAddExperience.id}" />
+                <!-- Education items will be dynamically added here -->
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+                <button type="button" class="btn btn-secondary" onclick="addExperience()">Add Experience</button>
+                <button type="submit" class="btn btn-primary">Next</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    let experienceIndex = 0;
 
+    function addExperience(){
+        const container = document.getElementById("experience-container");
+        const template = `
+        <div class="education-item border p-3 mb-3 rounded">
+            <div class="mb-3">
+                <label class="form-label">Job Title</label>
+                <input type="text" name="experiences[${experienceIndex}].jobTitle" placeholder="Enter Job Title" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Employer</label>
+                <input type="text" name="experiences[${experienceIndex}].employer" placeholder="Enter Employer name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Location</label>
+                <input type="text" name="experiences[${experienceIndex}].location" placeholder="Enter Location" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Is Remote</label>
+                <input type="text" name="experiences[${experienceIndex}].isRemote" placeholder="Is Remote Job or Not" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Joining Date</label>
+                <input type="text" name="experiences[${experienceIndex}].joiningDate" placeholder="Enter Joining Date" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">End Date</label>
+                <input type="text" name="experiences[${experienceIndex}].endDate" placeholder="Enter Joining Date" class="form-control">
+            </div>
+            <button type="button" class="btn btn-danger" onclick="removeExperience(this)">Remove</button>
+        </div>`;
+        container.insertAdjacentHTML('beforeend', template);
+        educationIndex++;
+    }
+
+    function removeExperience(button) {
+        const experienceItem = button.closest('.education-item');
+        experienceItem.remove();
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
