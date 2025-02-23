@@ -1,10 +1,9 @@
-package com.razu.ResumeBuilder.model.controller;
+package com.razu.ResumeBuilder.controller;
 
 import com.razu.ResumeBuilder.model.AppUser;
-import com.razu.ResumeBuilder.model.Experience;
 import com.razu.ResumeBuilder.model.Project;
-import com.razu.ResumeBuilder.model.repository.AppUserRepository;
-import com.razu.ResumeBuilder.model.repository.ProjectRepository;
+import com.razu.ResumeBuilder.repository.AppUserRepository;
+import com.razu.ResumeBuilder.repository.ProjectRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

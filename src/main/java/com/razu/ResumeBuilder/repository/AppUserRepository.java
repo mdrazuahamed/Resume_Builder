@@ -1,4 +1,4 @@
-package com.razu.ResumeBuilder.model.repository;
+package com.razu.ResumeBuilder.repository;
 
 import com.razu.ResumeBuilder.model.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
