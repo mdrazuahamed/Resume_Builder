@@ -28,6 +28,9 @@ public class AppUser {
     @OneToMany(cascade = CascadeType.ALL)
     private  List<Experience> experiences;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private  List<Project> projects;
+
     public AppUser(Long id, String firstName, String surName, String city, String postalCode, String country, String phone, String email, String summery, List<Education> educations, List<Experience> experiences) {
         this.id = id;
         this.firstName = firstName;
@@ -52,8 +55,31 @@ public class AppUser {
         this.email = email;
     }
 
+    public AppUser(Long id, String firstName, String surName, String city, String postalCode, String country, String phone, String email, String summery, List<Education> educations, List<Experience> experiences, List<Project> projects) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surName = surName;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.country = country;
+        this.phone = phone;
+        this.email = email;
+        this.summery = summery;
+        this.educations = educations;
+        this.experiences = experiences;
+        this.projects = projects;
+    }
+
     public AppUser() {
 
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 
     public List<Experience> getExperiences() {
