@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 20px 30px;
+        }
+
+        .navbar .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar img {
+            height: 70px;
+            margin-right: 10px;
+        }
+
+        .navbar h3 {
+            color: white;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .background-container {
+            background-image: url('/image/bcg2.PNG');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .btn-danger {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <div class="logo-container">
+        <img src="/image/logo.jpg" alt="Logo">
+        <h3>Resume Builder</h3>
+    </div>
+</div>
+<div class="background-container">
+    <div class="form-container">
+        <h2 class="text-center mb-4">Completed Projects</h2>
+        <form th:action="@{/project/projectDetails}" method="post" th:object="${appUserForAddProjects}">
+            <div id="project-container">
+                <input type="hidden" th:field="${appUserForAddProjects.id}" />
+                <!-- Project items will be dynamically added here -->
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+                <button type="button" class="btn btn-secondary" onclick="addProjets()">Add Project Details</button>
+                <button type="submit" class="btn btn-primary">Next</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    let projectIndex = 0;
+    function addProjets() {
+        const container = document.getElementById("project-container");
+        const template = `
+    <div class="project-item border p-3 mb-3 rounded">
+        <div class="mb-3">
+            <label class="form-label">Project Name</label>
+            <input type="text" name="projects[${projectIndex}].projectName" placeholder="Enter Project Name" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="projects[${projectIndex}].description" placeholder="Enter Project Description" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Technologies Used</label>
+            <input type="text" name="projects[${projectIndex}].technologiesUsed" placeholder="Enter Technologies Used" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Role</label>
+            <input type="text" name="projects[${projectIndex}].role" placeholder="Enter Your Role" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Start Date</label>
+            <input type="date" name="projects[${projectIndex}].startDate" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">End Date</label>
+            <input type="date" name="projects[${projectIndex}].endDate" class="form-control">
+        </div>
+        <button type="button" class="btn btn-danger" onclick="removeProject(this)">Remove</button>
+    </div>`;
+        container.insertAdjacentHTML('beforeend', template);
+        projectIndex++;
+    }
+
+    function removeProject(button) {
+        const projectItem = button.closest('.project-item');
+        projectItem.remove();
+    }
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

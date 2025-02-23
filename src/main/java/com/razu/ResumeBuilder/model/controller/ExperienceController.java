@@ -39,7 +39,7 @@ public class ExperienceController {
         experienceRepository.saveAll(appUser.getExperiences());
         appUser1.get().setExperiences(appUser.getExperiences());
         appUserRepository.save(appUser1.get());
-
-        return "success";
+        model.addAttribute("appUser", appUser);
+        return "project-landing-page";
     }
 }

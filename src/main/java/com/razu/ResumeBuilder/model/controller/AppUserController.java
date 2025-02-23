@@ -61,11 +61,5 @@ public class AppUserController {
         model.addAttribute("appUser",optionalAppUser.get());
         return "experience-landing-page";
     }
-    @GetMapping("/experienceDetails")
-    public String experienceDetails(@ModelAttribute("educations") AppUser appUser, Model model) {
-        model.addAttribute("appUserForAddExperience", appUser);
-        System.out.println(appUser.getId());
-        return "success";
-    }
 
 }
